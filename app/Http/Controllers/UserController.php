@@ -52,4 +52,49 @@ class UserController extends Controller
       "message"=>"logged out"
     ]);
 }
+
+public function get(){
+    $data = User::get();
+    
+    return ['data'=>$data ];
+}
+
+public function create(Request $request){
+$data = User::create([
+   
+    'first_name' => $request->first_name,
+    'last_name' => $request->last_name,
+    'phone_number' => $request->phone_number,
+    'address' => $request->address,
+    'email' => $request->email,
+    'history' => $request->history,
+    'balance' => $request->balance,
+    'favorites' => $request->favorites,
+    'password' => $request->password,
+
+]);
+return $data;
+}
+public function update(Request $request,$id){
+$data = User::where('id',$id)->update([
+
+    'first_name' => $request->first_name,
+    'last_name' => $request->last_name,
+    'phone_number' => $request->phone_number,
+    'address' => $request->address,
+    'email' => $request->email,
+    'history' => $request->history,
+    'balance' => $request->balance,
+    'favorites' => $request->favorites,
+    'password' => $request->password,
+
+   
+]);
+return $data;
+}
+
+public function delete(Request $request,$id){
+$data = User::where('id',$id)->delete();
+return $data;
+}
 }

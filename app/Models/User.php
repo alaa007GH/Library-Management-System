@@ -55,4 +55,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Book::class,'purchases');
     }
 
+
+    protected $fillable = ['first_name','last_name','phone_number','address','email','history','balance','favorites','password'];
 }
