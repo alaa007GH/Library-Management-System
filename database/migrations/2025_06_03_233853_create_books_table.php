@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->double('price');
             $table->integer('review');
-            $table->foreignId('id_category')->constrained('categories')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->timestamps();
         });
     }
