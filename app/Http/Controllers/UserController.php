@@ -67,9 +67,6 @@ $data = User::create([
     'phone_number' => $request->phone_number,
     'address' => $request->address,
     'email' => $request->email,
-    'history' => $request->history,
-    'balance' => $request->balance,
-    'favorites' => $request->favorites,
     'password' => $request->password,
 
 ]);
@@ -83,9 +80,6 @@ $data = User::where('id',$id)->update([
     'phone_number' => $request->phone_number,
     'address' => $request->address,
     'email' => $request->email,
-    'history' => $request->history,
-    'balance' => $request->balance,
-    'favorites' => $request->favorites,
     'password' => $request->password,
 
    

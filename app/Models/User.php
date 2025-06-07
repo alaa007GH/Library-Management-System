@@ -56,7 +56,7 @@ class User extends Authenticatable
     }
 
 
-    protected $fillable = ['first_name','last_name','phone_number','address','email','history','balance','favorites','password'];
+    protected $fillable = ['first_name','last_name','phone_number','address','email','password'];
 
 
     public function books()
