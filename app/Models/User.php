@@ -57,4 +57,10 @@ class User extends Authenticatable
 
 
     protected $fillable = ['first_name','last_name','phone_number','address','email','history','balance','favorites','password'];
+
+
+    public function books()
+{
+    return $this->belongsToMany(Book::class, 'borrowed_books', 'user_id', 'book_id');
+}
 }

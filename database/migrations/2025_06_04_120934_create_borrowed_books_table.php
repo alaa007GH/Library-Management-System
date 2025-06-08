@@ -19,7 +19,13 @@ return new class extends Migration
             $table->boolean('book_status');
             $table->timestamps();
         });
-    }
+    
+    Schema::create('borrowed_books', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('book_id')->constrained()->onDelete('cascade');
+        $table->timestamps();
+    });}
 
     /**
      * Reverse the migrations.
@@ -29,3 +35,5 @@ return new class extends Migration
         Schema::dropIfExists('borrowed_books');
     }
 };
+
+
