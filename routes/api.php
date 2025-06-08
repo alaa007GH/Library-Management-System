@@ -6,6 +6,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowedBookController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\UserBookController;
+use App\Http\Controllers\PointController;
+
 
 
 Route::post('register',[UserController::class,'register']);
@@ -28,3 +32,19 @@ Route::get('BorrowedBook/get',[BorrowedBookController::class,'get']);
 Route::post('BorrowedBook/create',[BorrowedBookController::class,'create']);
 Route::post('BorrowedBook/update/{id}',[BorrowedBookController::class,'update']);
 Route::post('BorrowedBook/delete/{id}',[BorrowedBookController::class,'delete']);
+
+Route::get( 'Purchase/get',[PurchaseController::class,'get']);
+Route::post('Purchase/create',[PurchaseController::class,'create']);
+Route::post('Purchase/update/{id}',[PurchaseController::class,'update']);
+Route::post('Purchase/delete/{id}',[PurchaseController::class,'delete']);
+
+Route::get( 'UserBook/get',[UserBookController::class,'get']);
+Route::post('UserBook/create',[UserBookController::class,'create']);
+Route::post('UserBook/update/{id}',[UserBookController::class,'update']);
+Route::post('UserBook/delete/{id}',[UserBookController::class,'delete']);
+
+Route::get( 'Point/get',[PointController::class,'get']);
+Route::post('Point/create',[PointController::class,'create']);
+Route::post('Point/update/{id}',[PointController::class,'update']);
+Route::post('Point/delete/{id}',[PointController::class,'delete']);
+
