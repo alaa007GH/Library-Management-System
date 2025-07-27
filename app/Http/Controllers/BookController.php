@@ -18,20 +18,20 @@ public function create(Request $request){
         'author' => $request->author,
         'description' => $request->description,
         'price' => $request->price,
-        'review' => $request->review,
         'category_id' => $request->category_id,
+        'discount' => $request->discount,
     ]);
     return $data;
 }
 public function update(Request $request,$id){
     $data = Book::where('id',$id)->update([
+        
         'book_title' => $request->book_title,
         'author' => $request->author,
         'description' => $request->description,
         'price' => $request->price,
-        'review' => $request->review,
         'category_id' => $request->category_id,
-       
+        'discount' => $request->discount,
     ]);
     return $data;
 }

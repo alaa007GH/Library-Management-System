@@ -17,9 +17,12 @@ public function create(Request $request){
        
         'book_id' => $request->book_id,
         'user_id' => $request->user_id,
-        'date' => $request->date,
-        'price' => $request->price,
-       
+        'quantity' => $request->quantity,
+        'unit_price' => $request->unit_price,
+        'purchase_date' => $request->purchase_date,
+        'total_price' => $request->total_price,
+
+        
     ]);
     return $data;
 }
@@ -29,8 +32,11 @@ public function update(Request $request,$id){
        
         'book_id' => $request->book_id,
         'user_id' => $request->user_id,
-        'date' => $request->date,
-        'price' => $request->price,
+        'quantity' => $request->quantity,
+        'unit_price' => $request->unit_price,
+        'purchase_date' => $request->purchase_date,
+        'total_price' => $request->total_price,
+
        
     ]);
     return $data;
@@ -40,5 +46,7 @@ public function delete(Request $request,$id){
     $data = Purchase::where('id',$id)->delete();
     return $data;
 }
+
+
 }
 

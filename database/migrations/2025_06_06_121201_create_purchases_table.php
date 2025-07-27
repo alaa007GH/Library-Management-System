@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id();
              $table->foreignId('book_id')->constrained('books')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->date('date');
-            $table->double('price');
+            $table->integer('quantity');
+             $table->double('unit_price');
+            $table->date('purchase_date');
+            $table->double('total_price');
             $table->timestamps();
         });
     }
+   
+
 
     /**
      * Reverse the migrations.

@@ -9,6 +9,7 @@ use App\Http\Controllers\BorrowedBookController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserBookController;
 use App\Http\Controllers\PointController;
+use App\Http\Controllers\ReviewController;
 
 
 
@@ -48,3 +49,7 @@ Route::post('Point/create',[PointController::class,'create']);
 Route::post('Point/update/{id}',[PointController::class,'update']);
 Route::post('Point/delete/{id}',[PointController::class,'delete']);
 
+Route::get( 'Review/get',[ReviewController::class,'get']);
+Route::post('Review/create',[ReviewController::class,'create']);
+Route::post('Review/update/{id}',[ReviewController::class,'update']);
+Route::post('Review/delete/{id}',[ReviewController::class,'delete']);
