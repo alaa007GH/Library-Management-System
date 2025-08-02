@@ -10,12 +10,19 @@ class UserController extends Controller
 {
     public function register(Request $request){
     $registerUserData = $request->validate([
-        'name'=>'required|string',
+        'first_name'=>'required|string',
+                'last_name'=>'required|string',
+        'phone_number'=>'required|string',
+'address'=> '',
         'email'=>'required|string|email|unique:users',
         'password'=>'required|min:8'
     ]);
     $user = User::create([
-        'name' => $registerUserData['name'],
+        'first_name' => $registerUserData['first_name'],
+                'last_name' => $registerUserData['last_name'],
+        'phone_number' => $registerUserData['phone_number'],
+        'address' => $registerUserData['address'],
+
         'email' => $registerUserData['email'],
         'password' => Hash::make($registerUserData['password']),
     ]);
@@ -23,7 +30,7 @@ class UserController extends Controller
 
     return response()->json([
         'message' => 'User Created ',
-        'token' => $token 
+        'token' => $token
     ]);
 }
 
@@ -55,13 +62,13 @@ class UserController extends Controller
 
 public function get(){
     $data = User::get();
-    
+
     return ['data'=>$data ];
 }
 
 public function create(Request $request){
 $data = User::create([
-   
+
     'first_name' => $request->first_name,
     'last_name' => $request->last_name,
     'phone_number' => $request->phone_number,
@@ -82,7 +89,7 @@ $data = User::where('id',$id)->update([
     'email' => $request->email,
     'password' => $request->password,
 
-   
+
 ]);
 return $data;
 }

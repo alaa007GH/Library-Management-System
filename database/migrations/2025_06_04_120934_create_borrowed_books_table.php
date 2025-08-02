@@ -14,18 +14,15 @@ return new class extends Migration
         Schema::create('borrowed_books', function (Blueprint $table) {
             $table->id();
             $table->date('borrow_date');
+                    $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('book_id')->constrained()->onDelete('cascade');
             $table->date('due_date');
             $table->string('borrower_name');
             $table->boolean('book_status');
             $table->timestamps();
         });
-    
-    Schema::create('borrowed_books', function (Blueprint $table) {
-        $table->id();
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        $table->foreignId('book_id')->constrained()->onDelete('cascade');
-        $table->timestamps();
-    });}
+
+   }
 
     /**
      * Reverse the migrations.
