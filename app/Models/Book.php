@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $fillable = ['book_title','author','description','price','category_id','discount'];
+    protected $fillable = ['book_title','author','description','image','price','category_id','discount'];
 
 public function borrowedBook(){
 return $this->hasMany(BorrowedBook::class,'category_id');}

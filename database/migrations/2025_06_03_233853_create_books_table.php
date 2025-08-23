@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('book_title');
             $table->string('author');
             $table->string('description');
+            $table->string('image');
             $table->double('price');
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->double('discount');

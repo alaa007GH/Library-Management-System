@@ -10,6 +10,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserBookController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\NotificationController;
 
 
 
@@ -53,3 +54,7 @@ Route::get( 'Review/get',[ReviewController::class,'get']);
 Route::post('Review/create',[ReviewController::class,'create']);
 Route::post('Review/update/{id}',[ReviewController::class,'update']);
 Route::post('Review/delete/{id}',[ReviewController::class,'delete']);
+
+    Route::get('notification/get', [NotificationController::class, 'getNotifications']);
+    Route::post('notification/get', [NotificationController::class, 'deleteNotification']);
+

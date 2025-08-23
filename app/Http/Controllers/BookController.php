@@ -12,33 +12,59 @@ class BookController extends Controller
         return ['data'=>$data ];
 }
 public function create(Request $request){
-    $data = Book::create([
-       
+    $bookData = [
         'book_title' => $request->book_title,
         'author' => $request->author,
         'description' => $request->description,
         'price' => $request->price,
         'category_id' => $request->category_id,
         'discount' => $request->discount,
-    ]);
+    ];
+
+    if ($request->hasFile('image')) {
+        $bookData['image'] = $request->file('image')->store('books', 'public');
+    }
+
+    $data = Book::create($bookData);
     return $data;
 }
 public function update(Request $request,$id){
-    $data = Book::where('id',$id)->update([
-        
+    $bookData = [
         'book_title' => $request->book_title,
         'author' => $request->author,
         'description' => $request->description,
         'price' => $request->price,
         'category_id' => $request->category_id,
         'discount' => $request->discount,
-    ]);
+    ];
+
+    if ($request->hasFile('image')) {
+        $bookData['image'] = $request->file('image')->store('books', 'public');
+    }
+
+    $data = Book::where('id',$id)->update($bookData);
     return $data;
 }
 
 public function delete(Request $request,$id){
     $data = Book::where('id',$id)->delete();
     return $data;
+}
+
+public function uploadImage(Request $request, $id)
+{
+    $book = Book::findOrFail($id);
+
+    if (!$request->hasFile('image')) {
+        return response()->json(['error' => 'No image file provided'], 400);
+    }
+
+    $path = $request->file('image')->store('books', 'public');
+
+    $book->image = $path;
+    $book->save();
+
+    return response()->json(['message' => 'Image uploaded successfully', 'path' => $path]);
 }
 }
 
