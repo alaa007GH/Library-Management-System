@@ -30,7 +30,8 @@ class UserController extends Controller
 
     return response()->json([
         'message' => 'User Created ',
-        'token' => $token
+        'token' => $token,
+        'user'=> $user
     ]);
 }
 
@@ -49,11 +50,13 @@ class UserController extends Controller
         $token = $user->createToken($user->name.'-AuthToken')->plainTextToken;
         return response()->json([
             'access_token' => $token,
+                    'user'=> $user
+
         ]);
     }
 
     public function logout(){
-    auth()->user()->tokens()->delete();
+    auth('sanctum')->user()->tokens()->delete();
 
     return response()->json([
       "message"=>"logged out"
