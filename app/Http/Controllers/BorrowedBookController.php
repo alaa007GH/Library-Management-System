@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 use App\Services\NotificationService;
 class BorrowedBookController extends Controller
 {
-    public function get(){
+  public function get(){
         $data = BorrowedBook::with('book')->get();
+
+        return ['data'=>$data ];
+}
+
+  public function get_my(){
+        $data = BorrowedBook::where('user_id',auth('sanctum')->user()->id)->with('book')->get();
 
         return ['data'=>$data ];
 }
@@ -15,7 +21,7 @@ public function create(Request $request){
     $data = BorrowedBook::create([
 
         'book_id' => $request->book_id,
-        'user_id' => auth('sanctum')->user()->id,
+        'user_id' => $request->user_id,
         'borrow_date' => $request->borrow_date,
         'due_date' => $request->due_date,
         'borrower_name' => $request->borrower_name,

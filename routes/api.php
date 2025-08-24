@@ -34,6 +34,8 @@ Route::get('BorrowedBook/get',[BorrowedBookController::class,'get']);
 Route::post('BorrowedBook/create',[BorrowedBookController::class,'create']);
 Route::post('BorrowedBook/update/{id}',[BorrowedBookController::class,'update']);
 Route::post('BorrowedBook/delete/{id}',[BorrowedBookController::class,'delete']);
+Route::get('BorrowedBook/get-me',[BorrowedBookController::class,'get_my']);
+
 
 Route::get( 'Purchase/get',[PurchaseController::class,'get']);
 Route::post('Purchase/create',[PurchaseController::class,'create']);
