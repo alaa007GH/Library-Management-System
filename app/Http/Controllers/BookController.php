@@ -25,6 +25,10 @@ public function create(Request $request){
         $bookData['image'] = $request->file('image')->store('books', 'public');
     }
 
+    if ($request->hasFile('file')) {
+        $bookData['pdf'] = $request->file('file')->store('books/pdfs', 'public');
+    }
+
     $data = Book::create($bookData);
     return $data;
 }
@@ -40,6 +44,10 @@ public function update(Request $request,$id){
 
     if ($request->hasFile('image')) {
         $bookData['image'] = $request->file('image')->store('books', 'public');
+    }
+
+    if ($request->hasFile('file')) {
+        $bookData['pdf'] = $request->file('file')->store('books/pdfs', 'public');
     }
 
     $data = Book::where('id',$id)->update($bookData);
@@ -66,6 +74,23 @@ public function uploadImage(Request $request, $id)
 
     return response()->json(['message' => 'Image uploaded successfully', 'path' => $path]);
 }
+
+public function uploadPdf(Request $request, $id)
+{
+    $book = Book::findOrFail($id);
+
+    if (!$request->hasFile('file')) {
+        return response()->json(['error' => 'No PDF file provided'], 400);
+    }
+
+    $path = $request->file('file')->store('books/pdfs', 'public');
+
+    $book->pdf = $path;
+    $book->save();
+
+    return response()->json(['message' => 'PDF uploaded successfully', 'path' => $path]);
 }
+}
+
 
 

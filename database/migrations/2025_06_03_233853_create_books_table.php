@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('author');
             $table->string('description');
             $table->string('image');
+            $table->string('pdf');
             $table->double('price');
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->double('discount');
