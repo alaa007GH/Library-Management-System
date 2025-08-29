@@ -2,21 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use App\Models\Category; // لا تنسى استيراد الموديل
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // إنشاء يوزر افتراضي
+        // إنشاء يوزر افتراضي (admin)
         User::firstOrCreate(
-            ['email' => 'admin@example.com'], 
+            ['email' => 'admin@example.com'],
             [
                 'first_name' => 'Default',
                 'last_name' => 'User',
@@ -26,7 +23,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // إنشاء أصناف كتب افتراضية
+        // أصناف افتراضية
         $categories = [
             'روايات',
             'علوم',
@@ -43,5 +40,12 @@ class DatabaseSeeder extends Seeder
         foreach ($categories as $name) {
             Category::firstOrCreate(['name' => $name]);
         }
+
+        // استدعاء seeders المخصصة
+        $this->call([
+            BooksSeeder::class,
+            PurchasesSeeder::class,
+            BorrowedBooksSeeder::class,
+        ]);
     }
 }
