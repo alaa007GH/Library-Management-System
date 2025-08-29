@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category; // لا تنسى استيراد الموديل
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +14,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // إنشاء يوزر افتراضي
+        User::firstOrCreate(
+            ['email' => 'admin@example.com'], 
+            [
+                'first_name' => 'Default',
+                'last_name' => 'User',
+                'phone_number' => '0000000000',
+                'address' => 'Default Address',
+                'password' => Hash::make('password123'),
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // إنشاء أصناف كتب افتراضية
+        $categories = [
+            'روايات',
+            'علوم',
+            'رياضيات',
+            'تاريخ',
+            'تكنولوجيا',
+            'أطفال',
+            'فن',
+            'سفر',
+            'طبخ',
+            'دين وفكر'
+        ];
+
+        foreach ($categories as $name) {
+            Category::firstOrCreate(['name' => $name]);
+        }
     }
 }
